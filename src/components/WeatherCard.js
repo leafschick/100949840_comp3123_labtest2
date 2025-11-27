@@ -1,23 +1,22 @@
 import React from "react";
 
+// shows the main weather info for the selected city
 function WeatherCard({ data }) {
 
-  if (!data) return null;
+    // if there's no data yet, don't show anything
+  
+    if (!data) return null;
 
+  // pulling out the main parts of the API response
   const { name, sys, main, weather, wind } = data;
   const currentInfo = weather ? weather[0] : null;
 
+  // weather icon from openweather (if available)
   const weatherIcon = currentInfo
     ? `http://openweathermap.org/img/wn/${currentInfo.icon}@2x.png`
     : "";
 
-     /*
-    This section will show layout for the weather card.
-    It shows city name, main weather condition, the big
-    temperature display, weather icon with its description.
-    Underneath that, it will show the smaller details like humidity,
-    wind speed, and air pressure depending on what the API returned.
-    */
+  
   return (
     <div className="weather-wrapper">
       <div className="report-header">

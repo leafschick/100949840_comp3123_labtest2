@@ -6,12 +6,8 @@ import ForecastStrip from "./components/ForecastStrip";
 // my personal API key for OpenWeatherMap
 const API_KEY = "39e1613133dedd8456ebdb97c55edbf9";
 
-/*
-  This function handles the main workflow of the app.
-  It keeps track of the city the user enters, stores the weather
-  data returned from the API, loads the weather info when the user
-  hits search, and also shows any error messages if something fails.
-*/
+  // main app state – holding the city, weather info, forecast, alerts, and the live clock
+
 function App() {
   const [city, setCity] = useState("Toronto");
   const [weatherData, setWeatherData] = useState(null);
@@ -23,7 +19,7 @@ function App() {
 
   const [currentTime, setCurrentTime] = useState(new Date());
 
-    // keep track of the current time for the live clock
+  // update the time every second for the live clock
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentTime(new Date());
@@ -38,14 +34,13 @@ function App() {
     setCity(event.target.value);
   };
 
-  // when the user picks a preset city from the dropdown
+  // handles when someone picks a city from the dropdown list
   const handlePresetCityChange = (event) => {
     const pickedCity = event.target.value;
     if (!pickedCity) return;
     setCity(pickedCity);
   };
 
-  // squeeze the 3-hour forecast list into 5 days with the highest temp
   const buildFiveDayForecast = (list) => {
     const byDate = {};
 
@@ -70,6 +65,7 @@ function App() {
     return Object.values(byDate).slice(0, 5);
   };
 
+    // quick check for any strong or extreme weather based on the current condition
     const checkWeatherAlert = (condition) => {
     if (!condition) {
       setWeatherAlert("No major weather alert.");
@@ -116,7 +112,7 @@ function App() {
     setIsLoading(true);
     setAlertMessage("");
     setWeatherData(null);
-    setForecastInfo([]); // clear old forecast
+    setForecastInfo([]); 
 
     try {
       // current weather
@@ -155,12 +151,7 @@ function App() {
     }
   };
 
-  /*
-    This section handles the whole UI layout of the app.
-    It shows the title, the search form where the user types a city,
-    and depending on what happens (loading, error, or valid data),
-    it either displays a message or loads the WeatherCard with the results. 
-  */
+  // clock, greeting, search, alerts, main weather card and forecast
   return (
     <div className="app">
       <div className="app-container">

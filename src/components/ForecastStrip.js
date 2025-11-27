@@ -1,8 +1,11 @@
 import React from "react";
 
+// show the next 5 days (emoji + temp + short label)
 
 function ForecastStrip({ days }) {
   const getEmojiForCondition = (mainText) => {
+
+    // pick a  emoji based on the main weather type
     if (!mainText) return "🌤️";
     const t = mainText.toLowerCase();
 
@@ -16,6 +19,7 @@ function ForecastStrip({ days }) {
     return "🌤️";
   };
 
+    // turn the date key into something short like "Mon", "Tue", etc.
   const formatDayLabel = (dateKey) => {
     const d = new Date(dateKey);
     return d.toLocaleDateString(undefined, { weekday: "short" }); 
