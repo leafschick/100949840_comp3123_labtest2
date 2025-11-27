@@ -1,38 +1,381 @@
-.App {
+/* ===== Page + App layout ===== */
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+  sans-serif;
+  background: linear-gradient(135deg, #0a1a2f, #000000, #3b0a63);
+  color: #e5e7eb;
+}
+
+.app {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.app-container {
+  background: rgba(15, 23, 42, 0.95);
+  padding: 2.5rem 3rem;
+  border-radius: 18px;
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.7);
+  max-width: 560px;
+  width: 100%;
+}
+
+/* ===== Title + subtitle ===== */
+
+.title {
+  margin: 0;
+  text-align: center;
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.subtitle {
+  margin-top: 0.4rem;
+  margin-bottom: 1.8rem;
+  text-align: center;
+  font-size: 0.95rem;
+  color: #9ca3af;
+}
+
+/* ===== Search form ===== */
+
+.search-form {
+  display: flex;
+  gap: 0.75rem;
+  margin-bottom: 1.3rem;
+}
+
+.city-input {
+  flex: 1;
+  padding: 0.7rem 0.95rem;
+  border-radius: 999px;
+  border: 1px solid #4b5563;
+  background-color: #020617;
+  color: #e5e7eb;
+  outline: none;
+  font-size: 0.95rem;
+}
+
+.city-input::placeholder {
+  color: #6b7280;
+}
+
+.city-input:focus {
+  border-color: #0ea5e9;
+  box-shadow: 0 0 0 1px #0ea5e9;
+}
+
+.search-btn {
+  padding: 0.7rem 1.3rem;
+  border-radius: 999px;
+  border: none;
+  background: #0ea5e9;
+  color: #0b1120;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 0.95rem;
+}
+
+.search-btn:hover {
+  filter: brightness(1.07);
+}
+
+/* ===== Status + alert messages ===== */
+
+.status {
+  text-align: center;
+  font-size: 0.95rem;
+  color: #e5e7eb;
+  margin-top: 0.4rem;
+}
+
+.alert-box {
+  margin-top: 0.6rem;
+  padding: 0.65rem 0.9rem;
+  border-radius: 8px;
+  background: #7f1d1d;
+  color: #fee2e2;
+  font-size: 0.9rem;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+/* ===== Weather card layout ===== */
+
+.weather-wrapper {
+  margin-top: 0.75rem;
+  padding: 1.5rem 1.3rem 1.1rem;
+  border-radius: 16px;
+  background: linear-gradient(135deg, #1f2937, #020617);
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
+/* header: city + condition */
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.report-header {
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 1rem;
+}
+
+.city-title {
+  margin: 0;
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+
+.condition-text {
+  font-size: 0.9rem;
+  color: #93c5fd;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+/* top section: temp + icon */
+
+.top-section {
+  display: flex;
+  justify-content: space-between;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  margin-bottom: 1rem;
 }
 
-.App-link {
-  color: #61dafb;
+.temp-area .current-temp {
+  font-size: 2.7rem;
+  font-weight: 700;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.temp-area .feels-like {
+  display: block;
+  margin-top: 0.25rem;
+  font-size: 0.9rem;
+  color: #9ca3af;
+}
+
+.icon-box {
+  text-align: center;
+}
+
+.icon-box img {
+  display: block;
+  margin: 0 auto;
+}
+
+.condition-desc {
+  margin-top: 0.25rem;
+  font-size: 0.9rem;
+  text-transform: capitalize;
+}
+
+
+.extra-details {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.55rem;
+  font-size: 0.85rem;
+  color: #d1d5db;
+  margin-top: 0.5rem;
+}
+
+.extra-details .label {
+  color: #9ca3af;
+  margin-right: 0.2rem;
+}
+
+/* ===== 5-day forecast strip ===== */
+
+.forecast-wrapper {
+  margin-top: 1.4rem;
+  padding-top: 1.1rem;
+  border-top: 1px solid rgba(148, 163, 184, 0.35);
+}
+
+.forecast-title {
+  margin: 0 0 0.8rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #e5e7eb;
+}
+
+.forecast-row {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 0.75rem;
+}
+
+.forecast-item {
+  background: radial-gradient(circle at top, #1f2937, #020617);
+  border-radius: 14px;
+  padding: 0.7rem 0.5rem 0.8rem;
+  text-align: center;
+  box-shadow: 0 10px 20px rgba(15, 23, 42, 0.7);
+}
+
+.forecast-day {
+  font-size: 0.8rem;
+  color: #9ca3af;
+  margin-bottom: 0.25rem;
+}
+
+/* emoji */
+.forecast-emoji {
+  font-size: 1.6rem;
+  margin-bottom: 0.2rem;
+  display: inline-block;
+  animation: floatUpDown 3s ease-in-out infinite;
+}
+
+.forecast-temp {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #e5e7eb;
+}
+
+.forecast-desc {
+  font-size: 0.75rem;
+  color: #9ca3af;
+}
+
+@keyframes floatUpDown {
+  0%,
+  100% {
+    transform: translateY(0);
   }
-  to {
-    transform: rotate(360deg);
+  50% {
+    transform: translateY(-4px);
   }
 }
+
+@media (max-width: 700px) {
+  .forecast-row {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 480px) {
+  .forecast-row {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* ===== dropdown with preset GTA cities ===== */
+
+.city-select-row {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 1.1rem;
+  font-size: 0.9rem;
+}
+
+.select-label {
+  color: #9ca3af;
+  white-space: nowrap;
+}
+
+.city-dropdown {
+  flex: 1;
+  max-width: 260px;
+  padding: 0.4rem 0.7rem;
+  border-radius: 999px;
+  border: 1px solid #4b5563;
+  background-color: #020617;
+  color: #e5e7eb;
+  font-size: 0.85rem;
+  outline: none;
+}
+
+.city-dropdown:focus {
+  border-color: #0ea5e9;
+  box-shadow: 0 0 0 1px #0ea5e9;
+}
+
+@media (max-width: 600px) {
+  .city-select-row {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .city-dropdown {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.weather-wrapper {
+  position: relative;
+}
+
+.weather-wrapper::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -15px;
+  width: 70%;
+  height: 20px;
+  transform: translateX(-50%);
+  background: radial-gradient(circle, rgba(14,165,233,0.4), transparent 70%);
+  filter: blur(10px);
+  animation: pulseGlow 3s infinite ease-in-out;
+}
+
+@keyframes pulseGlow {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 0.85; }
+}
+
+.greeting-text {
+  font-size: 0.9rem;
+  color: #cbd5e1;
+  margin-bottom: 0.4rem;
+  opacity: 0.8;
+}
+
+/* ===== app name + live clock ===== */
+
+.top-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.75rem;
+}
+
+.app-name {
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #cbd5e1;
+}
+
+.clock-box {
+  text-align: right;
+  font-size: 0.8rem;
+  color: #e5e7eb;
+}
+
+.clock-label {
+  display: block;
+  font-size: 0.7rem;
+  color: #9ca3af;
+}
+
+.clock-value {
+  font-weight: 500;
+}
+
+@media (max-width: 600px) {
+  .top-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.25rem;
+  }
+
+  .clock-box {
+    text-align: left;
+  }
+}
+
