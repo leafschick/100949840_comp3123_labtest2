@@ -29,5 +29,5 @@ http://openweathermap.org/img/wn/{icon}@2x.png
 ![Drop Down](public/screenshots/Dropdown.png)
 
 ### Postman 
-![Postman ](public/screenshots/Postman.png)
+![Postman](public/screenshots/Postman.png)
 
