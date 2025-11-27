@@ -9,13 +9,12 @@ It also includes a live clock, basic weather alerts (storm/snow warnings), prese
 This project uses the OpenWeatherMap API:
 
 - Current Weather Endpoint
-https://api.openweathermap.org/data/2.5/weather?q={city}&appid={API_KEY}
+https://api.openweathermap.org/data/2.5/weather?q=Toronto&appid=39e1613133dedd8456ebdb97c55edbf9&units=metric
+
 
 - 5-Day / 3-Hour Forecast
-https://api.openweathermap.org/data/2.5/forecast?q={city}&appid={API_KEY}
+https://api.openweathermap.org/data/2.5/forecast?q=Toronto&appid=39e1613133dedd8456ebdb97c55edbf9&units=metric
 
-- Weather icons are loaded from:
-http://openweathermap.org/img/wn/{icon}@2x.png
 
 ## Screenshots
 
